@@ -1,13 +1,19 @@
 import { parse, Compile } from 'velocityjs'
 import * as utils from './vtl-utils'
 
-//@ts-ignore
-import state from './state'
-
 const vtlTemplate = 
 `
 $util.toJson($data.private)
 `
+
+const state = {
+    "public": {
+        "publicKey": "hfghgfjghkjhljhkjhkjhjhgdffg"
+    },
+    "private": {
+        "secretKey": "dfgdfgdfşgmdsklfmsdşlfsmdf"
+    }
+}
 
 // for now allways returns as string
 export const transform = (state: any, vtlTemplate: string): string | undefined => {
