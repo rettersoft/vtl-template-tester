@@ -25,14 +25,12 @@ export const transform = (state: any, vtlTemplate: string): string | undefined =
             util: utils.utils,
             data: state,
         })
-        return result
 
-        //@salim: THIS PART IS STILL IN PR 
-        // try {
-        //     return JSON.parse(result)
-        // } catch (e) {
-        //     return result
-        // }
+        try {
+            return JSON.parse(result)
+        } catch (e) {
+            return result
+        }
 
     } catch (e) {
         console.log('VTL Error', e)
