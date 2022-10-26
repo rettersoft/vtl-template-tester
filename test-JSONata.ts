@@ -8,14 +8,20 @@ const state = {
         "secretKey": "dfgdfgdfşgmdsklfmsdşlfsmdf",
         "secondSecretKey": "dfgdfgdfşgmdsklfmsdşlfsmdf",
         "product": {
-            "name": "product name",
+            "name": "Dalin şampuan",
             "price": 100
         }
     }
 };
 
 (() => {
-    var expression = jsonata("private.product");
-    var result = expression.evaluate(state);  // returns 24
-    console.log(result);
+    const simpleExp = jsonata('private.product.name');
+    console.log(simpleExp.evaluate(state));
+
+
+    const expression = jsonata("$customFunc(private.product)");
+    expression.registerFunction("customFunc", (p) => p.price > 99 ? "expensive" : "cheap");
+
+    console.log(expression.evaluate(state));
 })()
+
